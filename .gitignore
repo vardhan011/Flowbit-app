@@ -1,0 +1,17 @@
+# node modules
+node_modules/
+
+# env
+.env
+.env.local
+
+# logs
+logs/
+*.log
+
+# build files
+dist/
+build/
+
+# n8n data
+n8n/.n8n/

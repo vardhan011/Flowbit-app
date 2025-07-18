@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  api:
+    build: ./api
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+      - n8n # Added n8n dependency
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/flowbit
+      - JWT_SECRET=supersecuresecret
+      - N8N_SECRET=flowbit123
+      - N8N_WEBHOOK_URL=http://n8n:5678/webhook/ticket-created # Added webhook URL
+
+  react-shell:
+    build: ./react-shell
+    container_name: flowbit-react-shell
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./react-shell:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:5000
+    command: npm run dev -- --host
+    depends_on:
+      - api
+
+  n8n:
+    image: n8nio/n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - WEBHOOK_URL=http://localhost:5678
+    volumes:
+      - ./n8n:/home/node/.n8n
+
+volumes:
+  mongo-data:

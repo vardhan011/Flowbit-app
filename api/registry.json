@@ -1,0 +1,30 @@
+{
+    "logisticsco": [
+        {
+            "name": "Support Tickets",
+            "url": "/support"
+        },
+        {
+            "name": "Create Ticket",
+            "url": "/tickets/create"
+        },
+        {
+            "name": "All Tickets",
+            "url": "/tickets"
+        },
+        {
+            "name": "My Tickets",
+            "url": "/mytickets"
+        }
+    ],
+    "retailgmbh": [
+        {
+            "name": "Support Tickets",
+            "url": "/support"
+        },
+        {
+            "name": "My Tickets",
+            "url": "/mytickets"
+        }
+    ]
+}

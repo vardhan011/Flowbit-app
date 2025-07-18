@@ -15,14 +15,14 @@ import CreateTicket from "./pages/CreateTicket";
 import ViewTickets from "./pages/ViewTickets";
 import MyTickets from "./pages/MyTickets";
 
-// Simple component for Access Denied message
+// Simple component for Access Denied message------------------------------------------------
 const AccessDenied = () => (
   <div className="p-4 bg-white rounded shadow text-red-600 font-bold">
     Only Admins can access this page.
   </div>
 );
 
-// Helper to get user info from JWT token
+// Helper to get user info from JWT token from browser------------------------------------------
 const getUserFromToken = () => {
   const token = localStorage.getItem("token");
   if (!token) return null;
@@ -36,7 +36,7 @@ const getUserFromToken = () => {
   }
 };
 
-// Auth Guard component
+// Auth Guard component----------------------------------------
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   const location = useLocation();
@@ -48,7 +48,7 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-// Main dashboard layout
+// Main dashboard layout----------------------------------------------
 const DashboardLayout = ({ screens, user }) => {
   return (
     <div className="flex h-screen bg-gray-100">
@@ -114,7 +114,7 @@ const DashboardLayout = ({ screens, user }) => {
   );
 };
 
-// App component
+// App component------------------------------------------------------------
 const App = () => {
   const [screens, setScreens] = useState([]);
   const [user, setUser] = useState(null);
@@ -122,8 +122,8 @@ const App = () => {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/test`)
       .then((res) => res.json())
-      .then((data) => console.log("✅ Backend API response:", data))
-      .catch((err) => console.error("❌ API error:", err));
+      .then((data) => console.log("Backend API response:", data))
+      .catch((err) => console.error("API error:", err));
   }, []);
 
 

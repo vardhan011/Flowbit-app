@@ -17,7 +17,7 @@ const MyTickets = () => {
             .then((data) => {
                 setTickets(data.tickets || []);
             })
-            .catch((err) => console.error("❌ Failed to fetch my tickets:", err));
+            .catch((err) => console.error("Failed to fetch my tickets:", err));
     }, []);
 
     return (

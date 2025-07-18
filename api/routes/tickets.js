@@ -21,7 +21,7 @@ const authMiddleware = (req, res, next) => {
     }
 };
 
-// ✅ Route: POST /api/tickets/create
+//  Route: POST /api/tickets/create
 router.post("/tickets/create", authMiddleware, async (req, res) => {
     if (req.user.role !== "Admin") {
         return res.status(403).json({ message: "Only Admins can create tickets" });
@@ -37,12 +37,12 @@ router.post("/tickets/create", authMiddleware, async (req, res) => {
             description,
             customerId,
             createdBy: email,
-            assignedTo, // ✅ add this line
+            assignedTo,
         });
 
 
         await ticket.save();
-        console.log("✅ Ticket saved:", ticket);
+        console.log("Ticket saved:", ticket);
         // Trigger n8n workflow webhook
         const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL || "http://localhost:5678/webhook/ticket-created";
 
@@ -53,9 +53,9 @@ router.post("/tickets/create", authMiddleware, async (req, res) => {
                 title: ticket.title,
                 status: ticket.status,
             });
-            console.log("✅ n8n webhook triggered");
+            console.log("n8n webhook triggered");
         } catch (webhookError) {
-            console.error("❌ Failed to trigger n8n webhook:", webhookError.message);
+            console.error("Failed to trigger n8n webhook:", webhookError.message);
         }
 
 
@@ -69,7 +69,7 @@ router.post("/tickets/create", authMiddleware, async (req, res) => {
     }
 });
 
-// GET /api/tickets - Get all tickets (Admin only)
+// GET /api/tickets - Get all tickets Admin only
 router.get("/tickets", authMiddleware, async (req, res) => {
     if (req.user.role !== "Admin") {
         return res.status(403).json({ message: "Only Admins can view tickets" });

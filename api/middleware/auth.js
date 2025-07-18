@@ -26,7 +26,7 @@ function authMiddleWare(req, res, next) {
     }
 }
 
-//restrict to only admins
+//restrict to only admins.............................
 
 function adminOnly(req, res, next) {
     if (req.user.role != "Admin") {

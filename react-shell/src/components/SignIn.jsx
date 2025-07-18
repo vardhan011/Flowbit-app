@@ -22,10 +22,10 @@ const SignIn = () => {
             const data = await res.json();
 
             if (res.ok && data.token) {
-                // ✅ Save token
+                // Save token----------------------------------------------
                 localStorage.setItem("token", data.token);
 
-                // ✅ Optionally log decoded payload (only for debugging, remove in prod)
+                // Optionally log decoded payload (only for debugging, remove in prod)----------------------
                 const payload = JSON.parse(atob(data.token.split('.')[1]));
                 console.log("Decoded Token:", payload);
 

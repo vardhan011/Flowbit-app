@@ -8,7 +8,7 @@ const ticketRoutes = require("./routes/tickets");
 
 
 const screensRoutes = require("./routes/screens");
-const webhookRoutes = require("./routes/webhook"); // 👈 Add this
+const webhookRoutes = require("./routes/webhook");
 
 const app = express();
 
@@ -27,7 +27,7 @@ mongoose.connect(process.env.MONGO_URI)
 // Register routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api", screensRoutes);
-app.use("/webhook", webhookRoutes); // 👈 Mount webhook routes here
+app.use("/webhook", webhookRoutes);
 app.use("/api", ticketRoutes);
 
 app.use('/api', testRoute);

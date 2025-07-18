@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// 🔐 Middleware to extract full user from JWT
+//  Middleware to extract full user from JWT
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
@@ -22,7 +22,7 @@ const authMiddleware = (req, res, next) => {
     }
 };
 
-// 🧭 Route to return screens based on tenant and user role
+// Route to return screens based on tenant and user role
 router.get("/me/screens", authMiddleware, (req, res) => {
     try {
         const customerId = req.user.customerId?.trim();
@@ -37,7 +37,7 @@ router.get("/me/screens", authMiddleware, (req, res) => {
             return res.status(404).json({ message: "No screens found for this customer" });
         }
 
-        // ✅ Filter out admin-only screens if user is not admin
+        // Filter out admin-only screens if user is not the  admin
         if (userRole !== "Admin") {
             screens = screens.filter(screen => screen.url !== "/tickets");
         }

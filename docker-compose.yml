@@ -14,12 +14,12 @@ services:
       - "5000:5000"
     depends_on:
       - mongo
-      - n8n # Added n8n dependency
+      - n8n
     environment:
       - MONGO_URI=mongodb://mongo:27017/flowbit
       - JWT_SECRET=supersecuresecret
       - N8N_SECRET=flowbit123
-      - N8N_WEBHOOK_URL=http://n8n:5678/webhook/ticket-created # Added webhook URL
+      - N8N_WEBHOOK_URL=http://n8n:5678/webhook/ticket-created
 
   react-shell:
     build: ./react-shell

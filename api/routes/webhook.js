@@ -3,7 +3,7 @@ const router = express.Router();
 const Ticket = require("../models/Ticket"); // your Mongoose model
 require("dotenv").config();
 
-const SHARED_SECRET = process.env.WEBHOOK_SECRET || "mysecret123"; // set in .env
+const SHARED_SECRET = process.env.WEBHOOK_SECRET || "mysecret123";
 
 // Webhook to update ticket status
 router.post("/webhook/ticket-done", async (req, res) => {
@@ -29,7 +29,6 @@ router.post("/webhook/ticket-done", async (req, res) => {
             return res.status(404).json({ message: "Ticket not found" });
         }
 
-        // TODO: Optionally emit event to frontend (e.g., via WebSocket) here
 
         res.json({ message: "Ticket updated", ticket: updatedTicket });
     } catch (error) {

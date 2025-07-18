@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const CreateTicket = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [assignedTo, setAssignedTo] = useState(""); // ✅ new field
+    const [assignedTo, setAssignedTo] = useState("");
     const [message, setMessage] = useState("");
 
     const handleSubmit = async (e) => {
@@ -19,7 +19,7 @@ const CreateTicket = () => {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify({ title, description, assignedTo }) // ✅ include it
+                body: JSON.stringify({ title, description, assignedTo })
             });
 
             const text = await res.text();
@@ -34,16 +34,16 @@ const CreateTicket = () => {
             }
 
             if (res.ok) {
-                setMessage("✅ Ticket created!");
+                setMessage("Ticket created!");
                 setTitle("");
                 setDescription("");
                 setAssignedTo("");
             } else {
-                setMessage(`❌ ${data.message || "Something went wrong"}`);
+                setMessage(`${data.message || "Something went wrong"}`);
             }
         } catch (error) {
-            console.error("❌ Error:", error);
-            setMessage("❌ Something went wrong");
+            console.error("Error:", error);
+            setMessage(" Something went wrong");
         }
     };
 
@@ -68,7 +68,7 @@ const CreateTicket = () => {
                     className="w-full px-3 py-2 border rounded"
                 ></textarea>
 
-                {/* ✅ Assigned To Input */}
+                {/* Assigned To Input */}
                 <input
                     type="email"
                     placeholder="Assign to (User Email)"

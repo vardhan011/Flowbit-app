@@ -28,8 +28,8 @@ router.get("/me/screens", authMiddleware, (req, res) => {
         const customerId = req.user.customerId?.trim();
         const userRole = req.user.role;
 
-        console.log("🔍 Getting screens for:", customerId);
-        console.log("👤 Decoded user:", req.user);
+        console.log(" Getting screens for:", customerId);
+        console.log(" Decoded user:", req.user);
 
         let screens = registry[customerId];
 
@@ -44,7 +44,7 @@ router.get("/me/screens", authMiddleware, (req, res) => {
 
         res.json({ screens });
     } catch (error) {
-        console.error("❌ Error in /me/screens:", error);
+        console.error(" Error in /me/screens:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });

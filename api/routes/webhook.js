@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Ticket = require("../models/Ticket"); // your Mongoose model
+const Ticket = require("../models/Ticket");
 require("dotenv").config();
 
 const SHARED_SECRET = process.env.WEBHOOK_SECRET || "mysecret123";
